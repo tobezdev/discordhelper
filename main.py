@@ -2,7 +2,7 @@
 import os
 import logging
 
-from discord import Bot, InteractionContextType, ExtensionFailed
+from discord import Bot, InteractionContextType, IntegrationType, ExtensionFailed
 
 import dotenv
 
@@ -20,6 +20,9 @@ bot = Bot(
         InteractionContextType.guild,
         InteractionContextType.bot_dm,
         InteractionContextType.private_channel
+    },
+    default_command_integration_types={
+        IntegrationType.user_install
     }
 )
 
