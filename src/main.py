@@ -34,14 +34,15 @@ bot = Bot(
 @bot.event
 async def on_ready():
     """Event handler for when the bot is ready."""
-    print(f"Ready as {bot.user}")
+    logger.info("Ready as %s", bot.user)
 
 for filename in os.listdir(os.path.join(os.path.dirname(__file__), "cogs")):
     if filename.endswith(".py"):
         try:
             bot.load_extension(f"cogs.{filename[:-3]}")
+            logger.info("Loaded extension %s", filename)
         except ExtensionFailed as e:
-            print(f"Failed to load extension {filename}: {e}")
+            logger.error("Failed to load extension %s: %s", filename, e)
 
 if __name__ == "__main__":
     bot.run(os.getenv("TOKEN"))
